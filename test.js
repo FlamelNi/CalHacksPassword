@@ -19,5 +19,11 @@ function random_str(len)
 
 function generate_char()
 {
-    return '0'
+    
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=<>?';
+    var charactersLength = characters.length;
+    return characters.charAt(Math.floor(Math.random() * charactersLength))
+    
 }
+
+
