@@ -16,14 +16,21 @@ function map_str(str)
 
 function random_str(len)
 {
-    return '0000';
+    var i;
+    var password = "";
+    for (i = 0; i < len ; i++) 
+{ 
+        password += generate_char()
+}
+    return password;
 }
 
 function generate_char()
 {
     var charactersLength = valid_chars.length;
     return valid_chars.charAt(Math.floor(Math.random() * charactersLength))
-    
 }
+
+
 
 
