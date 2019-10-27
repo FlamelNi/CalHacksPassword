@@ -19,9 +19,9 @@ function random_str(len)
     var i;
     var password = "";
     for (i = 0; i < len ; i++) 
-{ 
+    { 
         password += generate_char()
-}
+    }
     return password;
 }
 
