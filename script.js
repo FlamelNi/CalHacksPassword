@@ -1,55 +1,41 @@
-let term = ''
-const songContainer = document.getElementById('songs')
+//test1
+//this is javascript
+//test2
 
-const updateTerm = () => {
-  term = document.getElementById('searchInput').value;
+var valid_chars = 'ABDEFGHJMNPQRSTUWYabdefghjmnpqrstuwy123456789!@#$%^&*_+-=?';
 
-  if(!term || term ==='') {
-    alert('please enter a search term')
-  } else {
-      while(songContainer.firstChild) {
-        songContainer.removeChild(songContainer.firstChild);
-      }
-      const url = `https://itunes.apple.com/search?limit=10&media=music&term=${term}`
-      fetch(url)
-      .then((response) => response.json() )
-      .then((data) => {
-      //  console.log(data)
-        const artists = data.results;
-        return artists.map(result => {
-          const article = document.createElement('article'),
-                artist = document.createElement('p'),
-                song = document.createElement('p'),
-                img = document.createElement('img'),
-                audio = document.createElement('audio'),
-                audioSource = document.createElement('source')
-                console.log(result);
-                artist.innerHTML = result.artistName;
-                song.innerHTML = result.trackName
-                img.src = result.artworkUrl100
-                audioSource.src = result.previewUrl
-                audio.setAttribute('controls', '')
+function generate_password(len)
+{
+    if(len == '')
+        len = '6'
+    return map_str(random_str(parseInt(len)));
+}
 
-                article.appendChild(img)
-                article.appendChild(artist)
-                article.appendChild(song)
-                article.appendChild(audio)
-                audio.appendChild(audioSource)
-                songContainer.appendChild(article)
-        })
-      })
-      .catch(error=>console.log('Request failed: ', error))
+function map_str(str)
+{
+    return str;
+}
+
+function random_str(len)
+{
+    var i;
+    var password = "";
+    for (i = 0; i < len ; i++) 
+    { 
+        password += generate_char()
     }
-  }
+    return password;
+}
 
-const searchBtn = document.querySelector('button')
-searchBtn.addEventListener('click',updateTerm)
+function generate_char()
+{
+    var charactersLength = valid_chars.length;
+    return valid_chars.charAt( (Math.random()*1000)%charactersLength )
+    // return valid_chars.charAt(Math.floor(Math.random() * charactersLength))
+}
 
-document.addEventListener('play', event => {
-  const audios = document.getElementById('audio');
-  for(let i = 0; i < audios.length; i++) {
-    if(audios[i] != event.target) {
-      audios[i].pause();
-    }
-  }
-}, true)
+function change_div(divName, content) {
+    document.getElementById(divName).innerHTML = content;
+}
+
+
